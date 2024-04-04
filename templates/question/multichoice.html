@@ -1,0 +1,17 @@
+{% if question.single_choice %}
+<p>Choose one answer</p>
+{% else %}
+<p>Choose one or multiple answers</p>
+{% endif %}
+{% for answer in question.answers %}
+<div class="form-check">
+    {% if question.single_choice %}
+    <input class="form-check-input" type="radio" name="question-{{ question_id }}" id="answer-{{ loop.index }}">
+    {% else %}
+    <input class="form-check-input" type="checkbox" name="question-{{ question_id }}" id="answer-{{ loop.index }}">
+    {% endif %}
+    <label class="form-check-label" for="answer-{{ loop.index }}">
+        {{ answer.text }}
+    </label>
+</div>
+{% endfor %}
